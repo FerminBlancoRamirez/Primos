@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>100 primeros numeros primos</title>
+  <style>
+    :root {
+      --ink: #162014;
+      --paper: #f7f0dc;
+      --card: #fff9e8;
+      --accent: #d04f22;
+      --mint: #97c9a9;
+      --shadow: rgba(22, 32, 20, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(151, 201, 169, 0.8), transparent 28rem),
+        radial-gradient(circle at 82% 22%, rgba(208, 79, 34, 0.22), transparent 24rem),
+        linear-gradient(135deg, #f7f0dc 0%, #eadfbd 100%);
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(3rem, 10vw, 7.8rem);
+      line-height: 0.84;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+    }
+
+    .summary {
+      border: 2px solid var(--ink);
+      border-radius: 26px;
+      padding: 22px;
+      background: rgba(255, 249, 232, 0.76);
+      box-shadow: 10px 10px 0 var(--ink);
+    }
+
+    .summary p {
+      margin: 0;
+      font-size: 1.08rem;
+      line-height: 1.45;
+    }
+
+    .summary strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .prime-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(78px, 1fr));
+      gap: 12px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .prime-grid li {
+      position: relative;
+      min-height: 78px;
+      border: 2px solid var(--ink);
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--card);
+      box-shadow: 5px 5px 0 var(--shadow);
+      font-size: 1.45rem;
+      font-weight: 700;
+      transform: rotate(var(--tilt));
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .prime-grid li::before {
+      content: attr(data-index);
+      position: absolute;
+      top: 7px;
+      left: 10px;
+      color: rgba(22, 32, 20, 0.5);
+      font-size: 0.72rem;
+      font-weight: 400;
+    }
+
+    .prime-grid li:hover {
+      background: var(--mint);
+      box-shadow: 8px 8px 0 var(--ink);
+      transform: translate(-2px, -2px) rotate(0deg);
+    }
+
+    @media (max-width: 760px) {
+      main {
+        padding: 28px 0;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+
+      .prime-grid {
+        grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+      }
+
+      .prime-grid li {
+        min-height: 66px;
+        border-radius: 15px;
+        font-size: 1.18rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="title">
+      <h1 id="title">100 primeros primos</h1>
+      <div class="summary">
+        <strong id="total-primes">100</strong>
+        <p>Una lista calculada en el navegador con los primeros numeros primos, desde 2 hasta el primo numero 100.</p>
+      </div>
+    </section>
+
+    <ol class="prime-grid" id="prime-list" aria-label="Lista de los 100 primeros numeros primos"></ol>
+  </main>
+
+  <script>
+    const list = document.getElementById("prime-list");
+    const total = 100;
+
+    function isPrime(number) {
+      if (number < 2) return false;
+
+      for (let divisor = 2; divisor <= Math.sqrt(number); divisor++) {
+        if (number % divisor === 0) return false;
+      }
+
+      return true;
+    }
+
+    function getFirstPrimes(amount) {
+      const primes = [];
+      let candidate = 2;
+
+      while (primes.length < amount) {
+        if (isPrime(candidate)) primes.push(candidate);
+        candidate++;
+      }
+
+      return primes;
+    }
+
+    getFirstPrimes(total).forEach((prime, index) => {
+      const item = document.createElement("li");
+      const tilt = ((index % 5) - 2) * 0.7;
+
+      item.textContent = prime;
+      item.dataset.index = String(index + 1).padStart(2, "0");
+      item.style.setProperty("--tilt", `${tilt}deg`);
+      list.appendChild(item);
+    });
+  </script>
+</body>
+</html>
