@@ -3,138 +3,329 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>100 primeros numeros primos</title>
+  <title>100 razones para quererte</title>
   <style>
     :root {
-      --ink: #162014;
-      --paper: #f7f0dc;
-      --card: #fff9e8;
-      --accent: #d04f22;
-      --mint: #97c9a9;
-      --shadow: rgba(22, 32, 20, 0.18);
+      --ink: #32131d;
+      --rose: #d83a64;
+      --wine: #7c1732;
+      --cream: #fff4ec;
+      --paper: rgba(255, 250, 245, 0.82);
+      --gold: #f4b860;
+      --soft: rgba(216, 58, 100, 0.18);
+      --shadow: rgba(50, 19, 29, 0.18);
     }
 
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
       color: var(--ink);
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Cambria, Georgia, serif;
       background:
-        radial-gradient(circle at 20% 15%, rgba(151, 201, 169, 0.8), transparent 28rem),
-        radial-gradient(circle at 82% 22%, rgba(208, 79, 34, 0.22), transparent 24rem),
-        linear-gradient(135deg, #f7f0dc 0%, #eadfbd 100%);
+        radial-gradient(circle at 18% 12%, rgba(244, 184, 96, 0.58), transparent 18rem),
+        radial-gradient(circle at 86% 4%, rgba(216, 58, 100, 0.38), transparent 22rem),
+        radial-gradient(circle at 72% 82%, rgba(124, 23, 50, 0.24), transparent 24rem),
+        linear-gradient(135deg, #fff7ee 0%, #ffdbe4 48%, #f9b6c8 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
     }
 
     main {
-      width: min(1120px, calc(100% - 32px));
+      width: min(1120px, calc(100% - 28px));
       margin: 0 auto;
-      padding: 48px 0;
+      padding: 38px 0 54px;
     }
 
     .hero {
+      position: relative;
+      min-height: 68vh;
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 28px;
-      align-items: end;
-      margin-bottom: 30px;
+      align-items: center;
+    }
+
+    .hero::after {
+      content: "amor";
+      position: absolute;
+      right: -18px;
+      top: 36px;
+      z-index: -1;
+      color: rgba(255, 255, 255, 0.34);
+      font-size: clamp(8rem, 22vw, 18rem);
+      font-style: italic;
+      font-weight: 700;
+      line-height: 1;
+      transform: rotate(-9deg);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      margin: 0 0 20px;
+      border: 1px solid rgba(50, 19, 29, 0.22);
+      border-radius: 999px;
+      padding: 9px 15px;
+      background: rgba(255, 255, 255, 0.44);
+      color: var(--wine);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     h1 {
       margin: 0;
-      max-width: 760px;
-      font-size: clamp(3rem, 10vw, 7.8rem);
-      line-height: 0.84;
-      letter-spacing: -0.08em;
-      text-transform: uppercase;
+      max-width: 720px;
+      color: var(--wine);
+      font-size: clamp(3.4rem, 10vw, 8.8rem);
+      font-style: italic;
+      line-height: 0.83;
+      letter-spacing: -0.075em;
     }
 
-    .summary {
-      border: 2px solid var(--ink);
-      border-radius: 26px;
-      padding: 22px;
-      background: rgba(255, 249, 232, 0.76);
-      box-shadow: 10px 10px 0 var(--ink);
-    }
-
-    .summary p {
-      margin: 0;
-      font-size: 1.08rem;
+    .intro {
+      max-width: 560px;
+      margin: 24px 0 0;
+      font-size: clamp(1.1rem, 2.4vw, 1.45rem);
       line-height: 1.45;
     }
 
-    .summary strong {
-      display: block;
-      margin-bottom: 8px;
-      color: var(--accent);
-      font-size: 3rem;
-      line-height: 1;
+    .panel {
+      position: relative;
+      border: 2px solid rgba(50, 19, 29, 0.72);
+      border-radius: 34px;
+      padding: 26px;
+      background: var(--paper);
+      box-shadow: 16px 16px 0 rgba(124, 23, 50, 0.16);
+      backdrop-filter: blur(12px);
+      transform: rotate(1.4deg);
     }
 
-    .prime-grid {
+    .panel::before {
+      content: "";
+      position: absolute;
+      width: 68px;
+      height: 68px;
+      right: 28px;
+      top: -31px;
+      border-radius: 50% 50% 47% 53%;
+      background: var(--rose);
+      box-shadow: -32px 5px 0 -8px var(--gold);
+      transform: rotate(12deg);
+    }
+
+    .phrase-card {
+      min-height: 225px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(78px, 1fr));
+      align-content: center;
+      border-radius: 24px;
+      padding: 28px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 241, 231, 0.76)),
+        radial-gradient(circle at top right, var(--soft), transparent 16rem);
+    }
+
+    .phrase-card span {
+      color: var(--rose);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .phrase-card p {
+      margin: 16px 0 0;
+      color: var(--wine);
+      font-size: clamp(1.7rem, 4vw, 2.55rem);
+      font-style: italic;
+      line-height: 1.1;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 12px;
+      margin-top: 18px;
+    }
+
+    button,
+    a.button {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 17px;
+      color: #fff;
+      cursor: pointer;
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 160ms ease, box-shadow 160ms ease, filter 160ms ease;
+    }
+
+    button:hover,
+    a.button:hover {
+      transform: translateY(-2px);
+      filter: saturate(1.08);
+    }
+
+    .primary {
+      background: var(--rose);
+      box-shadow: 0 10px 24px rgba(216, 58, 100, 0.28);
+    }
+
+    .secondary {
+      background: var(--wine);
+      box-shadow: 0 10px 24px rgba(124, 23, 50, 0.22);
+    }
+
+    .counter {
+      margin: 18px 0 0;
+      color: rgba(50, 19, 29, 0.72);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 30px 0 18px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--wine);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-style: italic;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .hint {
+      max-width: 330px;
+      margin: 0;
+      color: rgba(50, 19, 29, 0.72);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .phrases {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
       padding: 0;
       margin: 0;
       list-style: none;
     }
 
-    .prime-grid li {
+    .phrases li {
       position: relative;
-      min-height: 78px;
-      border: 2px solid var(--ink);
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: var(--card);
-      box-shadow: 5px 5px 0 var(--shadow);
-      font-size: 1.45rem;
-      font-weight: 700;
+      min-height: 156px;
+      border: 1px solid rgba(50, 19, 29, 0.17);
+      border-radius: 24px;
+      padding: 42px 18px 18px;
+      background: rgba(255, 255, 255, 0.54);
+      box-shadow: 0 14px 30px var(--shadow);
+      font-size: 1.08rem;
+      line-height: 1.35;
       transform: rotate(var(--tilt));
-      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      animation: rise 520ms ease both;
+      animation-delay: calc(var(--delay) * 20ms);
     }
 
-    .prime-grid li::before {
-      content: attr(data-index);
+    .phrases li::before {
+      content: attr(data-number);
       position: absolute;
-      top: 7px;
-      left: 10px;
-      color: rgba(22, 32, 20, 0.5);
-      font-size: 0.72rem;
-      font-weight: 400;
+      top: 15px;
+      left: 18px;
+      color: var(--rose);
+      font-family: "Trebuchet MS", Verdana, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
     }
 
-    .prime-grid li:hover {
-      background: var(--mint);
-      box-shadow: 8px 8px 0 var(--ink);
-      transform: translate(-2px, -2px) rotate(0deg);
+    .phrases li::after {
+      content: "";
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: -8px 7px 0 var(--soft);
     }
 
-    @media (max-width: 760px) {
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(18px) rotate(var(--tilt));
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(var(--tilt));
+      }
+    }
+
+    @media (max-width: 780px) {
       main {
-        padding: 28px 0;
+        width: min(100% - 22px, 1120px);
+        padding-top: 24px;
       }
 
       .hero {
+        min-height: auto;
         grid-template-columns: 1fr;
+        padding: 18px 0 26px;
       }
 
-      .summary {
-        box-shadow: 6px 6px 0 var(--ink);
+      .panel {
+        padding: 16px;
+        border-radius: 26px;
+        box-shadow: 9px 9px 0 rgba(124, 23, 50, 0.16);
+        transform: none;
       }
 
-      .prime-grid {
-        grid-template-columns: repeat(auto-fit, minmax(64px, 1fr));
+      .phrase-card {
+        min-height: 190px;
+        padding: 22px;
       }
 
-      .prime-grid li {
-        min-height: 66px;
-        border-radius: 15px;
-        font-size: 1.18rem;
+      .actions,
+      .section-title {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .section-title {
+        align-items: start;
       }
     }
   </style>
@@ -142,51 +333,183 @@
 <body>
   <main>
     <section class="hero" aria-labelledby="title">
-      <h1 id="title">100 primeros primos</h1>
-      <div class="summary">
-        <strong id="total-primes">100</strong>
-        <p>Una lista calculada en el navegador con los primeros numeros primos, desde 2 hasta el primo numero 100.</p>
+      <div>
+        <p class="eyebrow">Un enlace solo para ti</p>
+        <h1 id="title">100 frases para recordarte cuanto te quiero</h1>
+        <p class="intro">Cada vez que abras esta pagina se mezclan las frases. Si pulsas el boton, Google se abre con una frase aleatoria para que el universo tambien se entere.</p>
       </div>
+
+      <aside class="panel" aria-label="Frase aleatoria destacada">
+        <div class="phrase-card">
+          <span>Frase de ahora</span>
+          <p id="current-phrase"></p>
+        </div>
+        <div class="actions">
+          <button class="primary" id="new-phrase" type="button">Otra frase</button>
+          <button class="secondary" id="open-google" type="button">Abrir en Google</button>
+        </div>
+        <p class="counter" id="counter"></p>
+      </aside>
     </section>
 
-    <ol class="prime-grid" id="prime-list" aria-label="Lista de los 100 primeros numeros primos"></ol>
+    <section aria-labelledby="phrases-title">
+      <div class="section-title">
+        <h2 id="phrases-title">Todas las frases</h2>
+        <p class="hint">Estan ordenadas al azar en cada visita, como si fueran notitas escondidas en el dia.</p>
+      </div>
+      <ol class="phrases" id="phrase-list"></ol>
+    </section>
   </main>
 
   <script>
-    const list = document.getElementById("prime-list");
-    const total = 100;
+    const phrases = [
+      "Te quiero porque contigo hasta los dias normales parecen especiales.",
+      "Eres mi lugar favorito, incluso cuando estamos en silencio.",
+      "Me encantas por como eres, por como miras y por como haces que todo mejore.",
+      "Quiero seguir eligiendote en todos mis dias buenos y tambien en los dificiles.",
+      "Tu sonrisa tiene la costumbre de arreglarme el mundo.",
+      "Desde que estas, la vida tiene mas color y mucho mas sentido.",
+      "No necesito un plan perfecto si el plan incluye estar contigo.",
+      "Te quiero mas de lo que se explicar y mas de lo que cabe en una frase.",
+      "Eres esa casualidad bonita que quiero cuidar siempre.",
+      "Me gusta la paz que me das y la locura bonita que me provocas.",
+      "Si pudiera guardar un momento, guardaria cualquiera en el que estes tu.",
+      "Gracias por existir justo de esa forma tan tuya que me enamora.",
+      "Eres mi pensamiento bonito cuando el dia se pone pesado.",
+      "Contigo aprendi que querer tambien puede sentirse como hogar.",
+      "Me haces feliz con detalles que a veces ni notas.",
+      "Te quiero en version abrazo, risa, charla larga y futuro.",
+      "Cuando pienso en algo bonito, casi siempre apareces tu.",
+      "Eres mi persona favorita para contarle lo bueno y abrazar lo malo.",
+      "Me enamora tu manera de hacer sencillo lo que antes parecia dificil.",
+      "Quiero muchas primeras veces contigo y tambien muchas rutinas.",
+      "Tu forma de querer me hace querer ser mejor.",
+      "No hay distancia que quite lo mucho que significas para mi.",
+      "Eres mi coincidencia favorita y mi decision mas clara.",
+      "Me gusta todo lo que soy cuando estoy contigo.",
+      "Te quiero con calma, con ganas y con todo lo que tengo.",
+      "Eres la parte mas bonita de mis planes improvisados.",
+      "Si el amor tuviera sonido, sonaria como tu risa.",
+      "Me haces sentir afortunado sin necesidad de grandes cosas.",
+      "Quiero cuidarte como se cuidan las cosas que no se quieren perder.",
+      "Eres mi mensaje favorito, incluso antes de abrir el movil.",
+      "Me gusta mirarte y pensar que la vida se paso de bonita contigo.",
+      "Te quiero por lo que eres y por lo que despiertas en mi.",
+      "A tu lado, cualquier sitio tiene pinta de destino.",
+      "Me encanta que seas tu, sin filtros y sin tener que cambiar nada.",
+      "Eres mi calma cuando todo va rapido.",
+      "Quiero seguir descubriendo pequeñas razones para quererte mas.",
+      "Tu nombre siempre queda bien en mis pensamientos.",
+      "Me haces sonreir hasta cuando no estas delante.",
+      "Te quiero en cada detalle, en cada gesto y en cada tonteria compartida.",
+      "Eres el tipo de persona que convierte un dia cualquiera en recuerdo.",
+      "Me gusta la suerte de haberte encontrado.",
+      "Si tengo que pedir algo, pido mas tiempo contigo.",
+      "Eres mi abrazo pendiente y mi sonrisa segura.",
+      "Te quiero como se quiere lo que alegra la vida de verdad.",
+      "No hay mapa mejor que tus manos cuando estoy perdido.",
+      "Eres mi parte favorita de casi todas las historias.",
+      "Me gusta que contigo puedo ser yo y aun asi sentirme especial.",
+      "Quiero que sepas que te pienso mas de lo que imaginas.",
+      "Tu cariño me hace sentir en casa aunque estemos lejos.",
+      "Me encantas incluso en tus dias raros, sobre todo porque siguen siendo tuyos.",
+      "Eres una de esas personas que no se encuentran dos veces.",
+      "Te quiero por tu luz, por tu fuerza y por tu manera de estar.",
+      "A veces no digo todo lo que siento, pero contigo siento muchisimo.",
+      "Eres mi razon favorita para mirar el movil con una sonrisa.",
+      "Contigo el futuro no asusta tanto; dan ganas de llegar.",
+      "Me enamora tu manera de aparecer en mi cabeza sin avisar.",
+      "Quiero ser el lugar donde puedas descansar del mundo.",
+      "Tus abrazos deberian tener horario ilimitado.",
+      "Eres mi bonita excepcion a todos los dias grises.",
+      "Te quiero de una forma que no busca presumir, solo quedarse.",
+      "Me gusta todo lo que compartimos y todo lo que todavia falta.",
+      "Si fueras cancion, seria esa que no me canso de repetir.",
+      "Eres mi suerte favorita disfrazada de persona.",
+      "Me haces creer que las cosas simples pueden ser enormes.",
+      "Te quiero con risas, con paciencia y con ganas de cuidarte.",
+      "Hay personas que llegan y cambian el ruido por paz; tu eres esa persona.",
+      "No necesito motivos para quererte, pero aun asi encuentro cien.",
+      "Eres mi forma favorita de coincidir con la vida.",
+      "Tu mirada tiene algo que me deja queriendote mas.",
+      "Me encanta que existas en el mismo mundo que yo.",
+      "Quiero caminar contigo incluso cuando no sepamos exactamente a donde.",
+      "Eres mi mejor pensamiento antes de dormir.",
+      "Te quiero en presente, en planes y en recuerdos que aun no tenemos.",
+      "Tu forma de reirte es una de mis debilidades favoritas.",
+      "Me haces sentir que querer bonito si existe.",
+      "Eres mi respuesta cuando me preguntan que me hace feliz.",
+      "Quiero aprenderme tus manias y quererlas tambien.",
+      "Te quiero porque contigo no tengo que fingir nada.",
+      "Eres el detalle que le faltaba a muchos de mis dias.",
+      "Cuando estas cerca, todo pesa un poco menos.",
+      "Me gusta quererte, pensarte y poder llamarte mi persona.",
+      "Eres mi lugar seguro con nombre propio.",
+      "Te quiero incluso cuando no encuentro palabras bonitas para decirlo.",
+      "Tu presencia hace que todo se sienta mas facil.",
+      "Me encantas por tus luces y tambien por tus sombras.",
+      "Quiero hacerte feliz en pequeño, en grande y en todos los formatos.",
+      "Eres mi casualidad preferida convertida en intencion.",
+      "Te quiero como para quedarme, no solo para pasar.",
+      "Me haces sentir orgulloso de tenerte en mi vida.",
+      "Eres mi cafe, mi calma y mi caos bonito del dia.",
+      "Quiero coleccionar momentos contigo hasta que perdamos la cuenta.",
+      "Tu cariño me llega donde nadie mas llega.",
+      "Eres esa persona que hace que un simple hola valga mucho.",
+      "Te quiero con el corazon lleno y las palabras cortas.",
+      "Me gusta imaginar futuros donde apareces tu.",
+      "Eres mi razon favorita para creer en las cosas bonitas.",
+      "Quiero que nunca dudes de lo importante que eres para mi.",
+      "Tu manera de ser es mi tipo favorito de magia.",
+      "Te quiero mas que ayer y probablemente menos que manana.",
+      "Si Google pudiera buscar mi felicidad, saldrias tu primera."
+    ];
 
-    function isPrime(number) {
-      if (number < 2) return false;
+    const currentPhrase = document.getElementById("current-phrase");
+    const counter = document.getElementById("counter");
+    const list = document.getElementById("phrase-list");
+    const newPhraseButton = document.getElementById("new-phrase");
+    const openGoogleButton = document.getElementById("open-google");
+    let currentIndex = 0;
 
-      for (let divisor = 2; divisor <= Math.sqrt(number); divisor++) {
-        if (number % divisor === 0) return false;
+    function shuffle(items) {
+      const shuffled = [...items];
+
+      for (let index = shuffled.length - 1; index > 0; index--) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
       }
 
-      return true;
+      return shuffled;
     }
 
-    function getFirstPrimes(amount) {
-      const primes = [];
-      let candidate = 2;
+    const randomizedPhrases = shuffle(phrases);
 
-      while (primes.length < amount) {
-        if (isPrime(candidate)) primes.push(candidate);
-        candidate++;
-      }
-
-      return primes;
+    function showPhrase(index) {
+      currentIndex = (index + randomizedPhrases.length) % randomizedPhrases.length;
+      currentPhrase.textContent = randomizedPhrases[currentIndex];
+      counter.textContent = `Frase ${currentIndex + 1} de ${randomizedPhrases.length}`;
     }
 
-    getFirstPrimes(total).forEach((prime, index) => {
+    function openGoogleWithPhrase() {
+      const query = `Para mi novia: ${randomizedPhrases[currentIndex]}`;
+      window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, "_blank", "noopener");
+    }
+
+    randomizedPhrases.forEach((phrase, index) => {
       const item = document.createElement("li");
-      const tilt = ((index % 5) - 2) * 0.7;
+      const tilt = ((index % 7) - 3) * 0.45;
 
-      item.textContent = prime;
-      item.dataset.index = String(index + 1).padStart(2, "0");
+      item.textContent = phrase;
+      item.dataset.number = String(index + 1).padStart(3, "0");
       item.style.setProperty("--tilt", `${tilt}deg`);
+      item.style.setProperty("--delay", index);
       list.appendChild(item);
     });
+
+    newPhraseButton.addEventListener("click", () => showPhrase(currentIndex + 1));
+    openGoogleButton.addEventListener("click", openGoogleWithPhrase);
+    showPhrase(Math.floor(Math.random() * randomizedPhrases.length));
   </script>
 </body>
 </html>
